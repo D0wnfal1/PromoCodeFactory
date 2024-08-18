@@ -1,5 +1,6 @@
 using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain.Administation;
+using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using PromoCodeFactory.DataAccess.Data;
 using PromoCodeFactory.DataAccess.Repositories;
 
@@ -11,6 +12,11 @@ builder.Services.AddScoped(typeof(IRepository<Employee>), (x) =>
     new InMemoryRepository<Employee>(FakeDataFactory.Employees));
 builder.Services.AddScoped(typeof(IRepository<Role>), (x) =>
     new InMemoryRepository<Role>(FakeDataFactory.Roles));
+builder.Services.AddScoped(typeof(IRepository<Customer>), (x) =>
+    new InMemoryRepository<Customer>(FakeDataFactory.Customers));
+builder.Services.AddScoped(typeof(IRepository<Preference>), (x) =>
+    new InMemoryRepository<Preference>(FakeDataFactory.Preferences);
+
 
 builder.Services.AddOpenApiDocument(options => 
 {

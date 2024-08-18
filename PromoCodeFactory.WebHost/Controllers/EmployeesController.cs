@@ -73,7 +73,7 @@ namespace PromoCodeFactory.WebHost.Controllers
         /// </summary> 
         /// <returns></returns>>
         [HttpPost]
-        public async Task<IActionResult> CreateEmployeeAsync(CreateOrEditEmployeeRequest model)
+        public async Task<IActionResult> CreateEmployeeAsync(CreateOrEditCustomerRequest model)
         {
             Employee employee = new Employee()
             {
@@ -103,7 +103,7 @@ namespace PromoCodeFactory.WebHost.Controllers
         /// </summary> 
         /// <returns></returns>>
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateEmployeeAsync(Guid id, CreateOrEditEmployeeRequest model)
+        public async Task<IActionResult> UpdateEmployeeAsync(Guid id, CreateOrEditCustomerRequest model)
         {
             Employee employee = await _employeeRepository.GetByIdAsync(id);
             if (employee == null)
