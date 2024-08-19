@@ -12,7 +12,7 @@ namespace PromoCodeFactory.Core.Domain.Administation
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {LastName}";
         public string Email { get; set; }
-        public List<Role> Roles { get; set; }
+        public List<EmployeeRole> EmployeeRoles { get; set; }
         public int AppliedPromocodesCount { get; set; }
     }
 }

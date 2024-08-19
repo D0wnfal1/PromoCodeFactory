@@ -10,5 +10,7 @@ namespace PromoCodeFactory.Core.Domain.Administation
     {
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public List<EmployeeRole> EmployeeRoles { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace PromoCodeFactory.Core.Abstractions.Repositories
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
         Task<IEnumerable<T>> GetByCondition(Func<T, bool> predicate);
+        Task SaveChangesAsync();
     }
 }

@@ -59,5 +59,10 @@ namespace PromoCodeFactory.DataAccess.Repositories
 
             return Task.CompletedTask;
         }
+
+        public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
