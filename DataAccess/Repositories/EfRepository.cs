@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain;
+using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using PromoCodeFactory.DataAccess.Data;
 
 public class EfRepository<T> : IRepository<T> where T : BaseEntity
@@ -57,5 +58,12 @@ public class EfRepository<T> : IRepository<T> where T : BaseEntity
     public PromoCodeFactoryDataContext GetDbContext()
     {
         return _dbContext;
+    }
+    public async Task<IEnumerable<CustomerPreference>> GetCustomerPreferencesWithCustomersAsync(Guid preferenceId)
+    {
+        return await _dbContext.CustomerPreferences
+            .Include(cp => cp.Customer)
+            .Where(cp => cp.PreferenceId == preferenceId)
+            .ToListAsync();
     }
 }

@@ -134,6 +134,10 @@ namespace PromoCodeFactory.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -150,7 +154,7 @@ namespace PromoCodeFactory.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("BeginName")
+                    b.Property<DateTime>("BeginDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Code")

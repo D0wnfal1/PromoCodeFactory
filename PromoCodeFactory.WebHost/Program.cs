@@ -27,11 +27,11 @@ builder.Services.AddDbContext<PromoCodeFactoryDataContext>(options =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped<IRepository<Employee>, EfRepository<Employee>>();
 builder.Services.AddScoped<IRepository<Role>, EfRepository<Role>>();
+builder.Services.AddScoped<IRepository<EmployeeRole>, EfRepository<EmployeeRole>>();
 builder.Services.AddScoped<IRepository<Customer>, EfRepository<Customer>>();
 builder.Services.AddScoped<IRepository<Preference>, EfRepository<Preference>>();
 builder.Services.AddScoped<IRepository<PromoCode>, EfRepository<PromoCode>>();
 builder.Services.AddScoped<IRepository<CustomerPreference>, EfRepository<CustomerPreference>>();
-builder.Services.AddScoped<IRepository<EmployeeRole>, EfRepository<EmployeeRole>>();
 
 
 builder.Services.AddOpenApiDocument(options => 
@@ -42,22 +42,21 @@ builder.Services.AddOpenApiDocument(options =>
 
 var app = builder.Build();
 
-using (var scope = builder.Services.BuildServiceProvider().CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<PromoCodeFactoryDataContext>();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var context = scope.ServiceProvider.GetRequiredService<PromoCodeFactoryDataContext>();
 
-    context.Database.EnsureDeleted();
+//    context.Database.EnsureDeleted();
+//    context.Database.EnsureCreated();
 
-    context.Database.EnsureCreated();
+//    context.Employees.AddRange(FakeDataFactory.Employees);
+//    context.Roles.AddRange(FakeDataFactory.Roles);
+//    context.Customers.AddRange(FakeDataFactory.Customers);
+//    context.Preferences.AddRange(FakeDataFactory.Preferences);
+//    context.EmployeeRoles.AddRange(FakeDataFactory.EmployeeRoles);
 
-    context.Employees.AddRange(FakeDataFactory.Employees);
-    context.Roles.AddRange(FakeDataFactory.Roles);
-    context.Customers.AddRange(FakeDataFactory.Customers);
-    context.Preferences.AddRange(FakeDataFactory.Preferences);
-
-    context.SaveChanges();
-}
-
+//    context.SaveChanges();
+//}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

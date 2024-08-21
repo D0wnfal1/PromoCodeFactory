@@ -6,7 +6,7 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        //TODO: Add list of Preferences
+        public List<PreferenceResponse> Preferences { get; set; }
         public List<PromoCodeShortResponse> PromoCodes{ get; set; }
     }
 }

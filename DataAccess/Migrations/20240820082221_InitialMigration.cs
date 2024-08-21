@@ -97,7 +97,7 @@ namespace PromoCodeFactory.DataAccess.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Code = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
                     ServiceName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    BeginName = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    BeginDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartnerName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     PartnerManagerId = table.Column<Guid>(type: "TEXT", nullable: false),

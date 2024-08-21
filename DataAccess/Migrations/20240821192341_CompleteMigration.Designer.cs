@@ -11,8 +11,8 @@ using PromoCodeFactory.DataAccess.Data;
 namespace PromoCodeFactory.DataAccess.Migrations
 {
     [DbContext(typeof(PromoCodeFactoryDataContext))]
-    [Migration("20240819010918_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240821192341_CompleteMigration")]
+    partial class CompleteMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,6 +137,10 @@ namespace PromoCodeFactory.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -153,7 +157,7 @@ namespace PromoCodeFactory.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("BeginName")
+                    b.Property<DateTime>("BeginDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Code")

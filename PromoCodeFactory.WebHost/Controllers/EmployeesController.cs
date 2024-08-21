@@ -32,7 +32,7 @@ namespace PromoCodeFactory.WebHost.Controllers
         /// </summary> 
         /// <returns></returns>>
         [HttpGet]
-        public async Task<List<EmployeeShortResponse>> GetEmployeesAsync()
+        public async Task<ActionResult<EmployeeShortResponse>> GetEmployeesAsync()
         {
             var employees = await _employeeRepository.GetAllAsync();
 
@@ -44,7 +44,7 @@ namespace PromoCodeFactory.WebHost.Controllers
                     FullName = x.FullName,
                 }).ToList();
 
-            return employeeList;
+            return Ok(employeeList);
         }
 
         /// <summary>
@@ -54,33 +54,32 @@ namespace PromoCodeFactory.WebHost.Controllers
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<EmployeeResponse>> GetEmployeeByIdAsync(Guid id)
         {
-            var employee = await _employeeRepository.GetByIdAsync(id);
+            var employee = await _dbContext.Employees
+                                            .Include(e => e.EmployeeRoles)
+                                            .ThenInclude(er => er.Role)
+                                            .FirstOrDefaultAsync(e => e.Id == id);
 
             if (employee == null)
                 return NotFound();
 
-            var roleIds = employee.EmployeeRoles.Select(x => x.RoleId).Distinct().ToList();
-            var roles = await Task.WhenAll(roleIds.Select(roleId => _roleRepository.GetByIdAsync(roleId)));
-
             var employeeModel = new EmployeeResponse()
             {
                 Id = employee.Id,
+                FullName = employee.FullName,
                 Email = employee.Email,
-                Roles = roles
-                    .Where(role => role != null)
-                    .Select(role => new RoleItemResponse()
+                Roles = employee.EmployeeRoles
+                    .Select(er => new RoleItemResponse()
                     {
-                        Name = role.Name,
-                        Description = role.Description,
+                        Id = er.Role.Id,
+                        Name = er.Role.Name,
+                        Description = er.Role.Description,
                     })
                     .ToList(),
-                FullName = employee.FullName,
                 AppliedPromocodesCount = employee.AppliedPromocodesCount,
             };
 
-            return employeeModel;
+            return Ok(employeeModel);
         }
-
 
         /// <summary>
         /// Create Employee
@@ -138,7 +137,6 @@ namespace PromoCodeFactory.WebHost.Controllers
             return NoContent();
         }
 
-
         /// <summary>
         /// Update Employee
         /// </summary> 
@@ -152,7 +150,7 @@ namespace PromoCodeFactory.WebHost.Controllers
                 return NotFound();
             }
 
-            var roles = await _roleRepository.GetByCondition(x => model.RoleNames.Contains(x.Name)) as List<Role>;
+            var roles = (await _roleRepository.GetByCondition(x => model.RoleNames.Contains(x.Name))).ToList();
 
             if (roles == null || !roles.Any())
             {
@@ -161,10 +159,11 @@ namespace PromoCodeFactory.WebHost.Controllers
 
             employee.FirstName = model.FirstName;
             employee.LastName = model.LastName;
-            employee.AppliedPromocodesCount = model.AppliedPromocodesCount;
             employee.Email = model.Email;
+            employee.AppliedPromocodesCount = model.AppliedPromocodesCount;
 
             var existingRoles = (await _employeeRoleRepository.GetByCondition(er => er.EmployeeId == id)).ToList();
+
             foreach (var existingRole in existingRoles)
             {
                 await _employeeRoleRepository.DeleteAsync(existingRole);
@@ -184,15 +183,13 @@ namespace PromoCodeFactory.WebHost.Controllers
             try
             {
                 await _employeeRepository.UpdateAsync(employee);
+                return NoContent();
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-
-            return NoContent();
         }
-
 
         /// <summary>
         /// Delete Employee

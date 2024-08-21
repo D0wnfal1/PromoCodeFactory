@@ -11,7 +11,7 @@ namespace PromoCodeFactory.Core.Domain.PromoCodeManagement
     {
         public string Code { get; set; }
         public string ServiceName { get; set; }
-        public DateTime BeginName { get; set; }
+        public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
         public string PartnerName { get; set; }
 

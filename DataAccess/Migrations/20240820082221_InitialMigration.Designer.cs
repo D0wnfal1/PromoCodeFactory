@@ -11,7 +11,7 @@ using PromoCodeFactory.DataAccess.Data;
 namespace PromoCodeFactory.DataAccess.Migrations
 {
     [DbContext(typeof(PromoCodeFactoryDataContext))]
-    [Migration("20240819013204_InitialMigration")]
+    [Migration("20240820082221_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -153,7 +153,7 @@ namespace PromoCodeFactory.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("BeginName")
+                    b.Property<DateTime>("BeginDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Code")
