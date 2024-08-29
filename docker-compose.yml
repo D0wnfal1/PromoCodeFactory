@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # PromoCodeFactory API
+  promocode-factory-api:
+    build: src
+    container_name: "promocode-factory-api"
+    restart: always
+    ports:
+      - "7123:8080"  # Зовнішній порт 7123 перенаправляється на внутрішній 8080
+    environment:
+      - "ConnectionStrings:DefaultConnection=Host=promocode-factory-db;Port=5432;Database=PromoCodeFactory;Username=postgres;Password=147258369"
+    depends_on:
+      - promocode-factory-db
+
+  # PromoCodeFactory DB
+  promocode-factory-db:
+    image: "postgres:latest"
+    container_name: 'promocode-factory-db'
+    restart: always
+    ports: 
+      - "5432:5432"
+    environment: 
+      - POSTGRES_PASSWORD=147258369
