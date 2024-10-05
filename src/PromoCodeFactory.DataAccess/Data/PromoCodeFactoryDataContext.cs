@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PromoCodeFactory.Core.Domain.Administation;
 using PromoCodeFactory.Core.Domain.PromoCodeManagement;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PromoCodeFactory.DataAccess.Data
 {
@@ -22,6 +17,8 @@ namespace PromoCodeFactory.DataAccess.Data
         public DbSet<PromoCode> PromoCodes { get; set; }
         public DbSet<CustomerPreference> CustomerPreferences { get; set; }
         public DbSet<EmployeeRole> EmployeeRoles { get; set; }
+        public DbSet<Partner> Partners { get; set; }
+        public DbSet<PartnerPromoCodeLimit> PartnerPromoCodeLimits { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

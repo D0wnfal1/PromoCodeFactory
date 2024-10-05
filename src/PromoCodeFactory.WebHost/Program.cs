@@ -3,7 +3,6 @@ using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain.Administation;
 using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using PromoCodeFactory.DataAccess.Data;
-using PromoCodeFactory.DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +31,8 @@ builder.Services.AddScoped<IRepository<Customer>, EfRepository<Customer>>();
 builder.Services.AddScoped<IRepository<Preference>, EfRepository<Preference>>();
 builder.Services.AddScoped<IRepository<PromoCode>, EfRepository<PromoCode>>();
 builder.Services.AddScoped<IRepository<CustomerPreference>, EfRepository<CustomerPreference>>();
+builder.Services.AddScoped<IRepository<Partner>, EfRepository<Partner>>();
+builder.Services.AddScoped<IRepository<PartnerPromoCodeLimit>, EfRepository<PartnerPromoCodeLimit>>();
 
 
 builder.Services.AddOpenApiDocument(options => 

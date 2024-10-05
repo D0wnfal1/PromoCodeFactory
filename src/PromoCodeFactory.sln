@@ -4,10 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromoCodeFactory.WebHost", "PromoCodeFactory.WebHost\PromoCodeFactory.WebHost.csproj", "{EF1A1AC0-1EF0-4995-9A59-2CC8A883A6BB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromoCodeFactory.DataAccess", "DataAccess\PromoCodeFactory.DataAccess.csproj", "{C72B4166-84E0-41C3-9234-04D3B40F5AF6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{945D06BC-A71F-4C00-982E-FACF5A0BFEC1} = {945D06BC-A71F-4C00-982E-FACF5A0BFEC1}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromoCodeFactory.Core", "PromoCodeFactory.Core\PromoCodeFactory.Core.csproj", "{E3C21753-FABC-4B35-96A8-01BDA3AB4908}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromoCodeFactory.DataAccess", "PromoCodeFactory.DataAccess\PromoCodeFactory.DataAccess.csproj", "{945D06BC-A71F-4C00-982E-FACF5A0BFEC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoCodeFactory.UnitTests", "PromoCodeFactory.UnitTests\PromoCodeFactory.UnitTests.csproj", "{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +24,18 @@ Global
 		{EF1A1AC0-1EF0-4995-9A59-2CC8A883A6BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF1A1AC0-1EF0-4995-9A59-2CC8A883A6BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF1A1AC0-1EF0-4995-9A59-2CC8A883A6BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C72B4166-84E0-41C3-9234-04D3B40F5AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C72B4166-84E0-41C3-9234-04D3B40F5AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C72B4166-84E0-41C3-9234-04D3B40F5AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C72B4166-84E0-41C3-9234-04D3B40F5AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3C21753-FABC-4B35-96A8-01BDA3AB4908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3C21753-FABC-4B35-96A8-01BDA3AB4908}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3C21753-FABC-4B35-96A8-01BDA3AB4908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3C21753-FABC-4B35-96A8-01BDA3AB4908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{945D06BC-A71F-4C00-982E-FACF5A0BFEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{945D06BC-A71F-4C00-982E-FACF5A0BFEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{945D06BC-A71F-4C00-982E-FACF5A0BFEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{945D06BC-A71F-4C00-982E-FACF5A0BFEC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
