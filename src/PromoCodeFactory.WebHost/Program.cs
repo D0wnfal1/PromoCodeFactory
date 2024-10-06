@@ -3,26 +3,30 @@ using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain.Administation;
 using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using PromoCodeFactory.DataAccess.Data;
+using PromoCodeFactory.DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
-//builder.Services.AddScoped(typeof(IRepository<Employee>), (x) =>
-//    new InMemoryRepository<Employee>(FakeDataFactory.Employees));
-//builder.Services.AddScoped(typeof(IRepository<Role>), (x) =>
-//    new InMemoryRepository<Role>(FakeDataFactory.Roles));
-//builder.Services.AddScoped(typeof(IRepository<Customer>), (x) =>
-//    new InMemoryRepository<Customer>(FakeDataFactory.Customers));
-//builder.Services.AddScoped(typeof(IRepository<Preference>), (x) =>
-//    new InMemoryRepository<Preference>(FakeDataFactory.Preferences));
+builder.Services.AddScoped(typeof(IRepository<Employee>), (x) =>
+    new InMemoryRepository<Employee>(FakeDataFactory.Employees));
+builder.Services.AddScoped(typeof(IRepository<Role>), (x) =>
+    new InMemoryRepository<Role>(FakeDataFactory.Roles));
+builder.Services.AddScoped(typeof(IRepository<Customer>), (x) =>
+    new InMemoryRepository<Customer>(FakeDataFactory.Customers));
+builder.Services.AddScoped(typeof(IRepository<Preference>), (x) =>
+    new InMemoryRepository<Preference>(FakeDataFactory.Preferences));
+builder.Services.AddScoped(typeof(IRepository<Partner>), (x) =>
+    new InMemoryRepository<Partner>(FakeDataFactory.Partners));
 
-//builder.Services.AddDbContext<PromoCodeFactoryDataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<PromoCodeFactoryDataContext>(options =>
-           options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Регистрация репозиториев
+builder.Services.AddDbContext<PromoCodeFactoryDataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<PromoCodeFactoryDataContext>(options =>
+//options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Registration of repositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped<IRepository<Employee>, EfRepository<Employee>>();
 builder.Services.AddScoped<IRepository<Role>, EfRepository<Role>>();
@@ -55,9 +59,11 @@ var app = builder.Build();
 //    context.Customers.AddRange(FakeDataFactory.Customers);
 //    context.Preferences.AddRange(FakeDataFactory.Preferences);
 //    context.EmployeeRoles.AddRange(FakeDataFactory.EmployeeRoles);
+//    context.Partners.AddRange(FakeDataFactory.Partners);
 
 //    context.SaveChanges();
 //}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -6,8 +6,21 @@ namespace PromoCodeFactory.Core.Domain.PromoCodeManagement
     {
         public string Code { get; set; }
         public string ServiceName { get; set; }
-        public DateTime BeginDate { get; set; }
-        public DateTime EndDate { get; set; }
+
+        private DateTime _beginDate;
+        public DateTime BeginDate
+        {
+            get => _beginDate;
+            set => _beginDate = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+        }
+
+        private DateTime _endDate;
+        public DateTime EndDate
+        {
+            get => _endDate;
+            set => _endDate = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+        }
+
         public string PartnerName { get; set; }
 
         public Guid PartnerManagerId { get; set; }

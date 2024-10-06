@@ -3,7 +3,7 @@ using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using PromoCodeFactory.WebHost.Models;
 
-namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
+namespace PromoCodeFactory.WebHost.Controllers
 {
     /// <summary>
     /// Partners

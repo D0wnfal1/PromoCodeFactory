@@ -1,5 +1,4 @@
-﻿
-namespace PromoCodeFactory.WebHost.Models
+﻿namespace PromoCodeFactory.WebHost.Models
 {
     public class PartnerPromoCodeLimitResponse
     {

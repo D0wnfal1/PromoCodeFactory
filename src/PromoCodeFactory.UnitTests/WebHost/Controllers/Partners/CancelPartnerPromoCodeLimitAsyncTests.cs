@@ -3,11 +3,11 @@ using AutoFixture.AutoMoq;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Otus.Teaching.PromoCodeFactory.WebHost.Controllers;
 using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain.PromoCodeManagement;
+using PromoCodeFactory.WebHost.Controllers;
 
-namespace Otus.Teaching.PromoCodeFactory.UnitTests.WebHost.Controllers.Partners
+namespace PromoCodeFactory.UnitTests.WebHost.Controllers.Partners
 {
     public class CancelPartnerPromoCodeLimitAsyncTests
     {
