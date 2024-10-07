@@ -13,4 +13,4 @@ namespace PromoCodeFactory.Core.Domain.PromoCodeManagement
 
         public virtual ICollection<PartnerPromoCodeLimit> PartnerLimits { get; set; }
     }
-}
+}   

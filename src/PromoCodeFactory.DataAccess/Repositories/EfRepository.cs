@@ -15,6 +15,11 @@ public class EfRepository<T> : IRepository<T> where T : BaseEntity
         _dbSet = _dbContext.Set<T>();
     }
 
+    public IQueryable<T> GetAll()
+    {
+        return _dbSet.AsQueryable();
+    }
+
     public async Task<IEnumerable<T>> GetAllAsync()
     {
         return await _dbSet.ToListAsync();

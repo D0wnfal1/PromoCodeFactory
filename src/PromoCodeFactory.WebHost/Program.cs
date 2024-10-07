@@ -10,33 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-builder.Services.AddScoped(typeof(IRepository<Employee>), (x) =>
-    new InMemoryRepository<Employee>(FakeDataFactory.Employees));
-builder.Services.AddScoped(typeof(IRepository<Role>), (x) =>
-    new InMemoryRepository<Role>(FakeDataFactory.Roles));
-builder.Services.AddScoped(typeof(IRepository<Customer>), (x) =>
-    new InMemoryRepository<Customer>(FakeDataFactory.Customers));
-builder.Services.AddScoped(typeof(IRepository<Preference>), (x) =>
-    new InMemoryRepository<Preference>(FakeDataFactory.Preferences));
-builder.Services.AddScoped(typeof(IRepository<Partner>), (x) =>
-    new InMemoryRepository<Partner>(FakeDataFactory.Partners));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped<IDbInitializer, EfDbInitializer>();
 
+builder.Services.AddDbContext<PromoCodeFactoryDataContext>(options => {
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
-builder.Services.AddDbContext<PromoCodeFactoryDataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 //builder.Services.AddDbContext<PromoCodeFactoryDataContext>(options =>
 //options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Registration of repositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-builder.Services.AddScoped<IRepository<Employee>, EfRepository<Employee>>();
-builder.Services.AddScoped<IRepository<Role>, EfRepository<Role>>();
-builder.Services.AddScoped<IRepository<EmployeeRole>, EfRepository<EmployeeRole>>();
-builder.Services.AddScoped<IRepository<Customer>, EfRepository<Customer>>();
-builder.Services.AddScoped<IRepository<Preference>, EfRepository<Preference>>();
-builder.Services.AddScoped<IRepository<PromoCode>, EfRepository<PromoCode>>();
-builder.Services.AddScoped<IRepository<CustomerPreference>, EfRepository<CustomerPreference>>();
-builder.Services.AddScoped<IRepository<Partner>, EfRepository<Partner>>();
-builder.Services.AddScoped<IRepository<PartnerPromoCodeLimit>, EfRepository<PartnerPromoCodeLimit>>();
+
 
 
 builder.Services.AddOpenApiDocument(options => 
@@ -88,5 +74,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.InitializeDb();
+    }
+}
+
+SeedDatabase();
 
 app.Run();

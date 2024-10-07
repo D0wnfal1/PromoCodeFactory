@@ -130,7 +130,7 @@ namespace PromoCodeFactory.DataAccess.Data
                 },
             }
         };
-        public static List<Partner> Partners => new List<Partner>()
+        public static IEnumerable<Partner> Partners => new List<Partner>()
         {
             new Partner()
             {

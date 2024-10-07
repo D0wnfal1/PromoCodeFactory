@@ -1,10 +1,5 @@
 ﻿using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PromoCodeFactory.DataAccess.Repositories
 {
@@ -60,9 +55,14 @@ namespace PromoCodeFactory.DataAccess.Repositories
             return Task.CompletedTask;
         }
 
+        public IQueryable<T> GetAll()
+        {
+            return Data.AsQueryable();
+        }
+
         public Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

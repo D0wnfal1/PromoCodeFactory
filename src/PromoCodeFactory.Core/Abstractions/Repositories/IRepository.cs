@@ -11,6 +11,7 @@ namespace PromoCodeFactory.Core.Abstractions.Repositories
        where T : BaseEntity
     {
         Task<IEnumerable<T>> GetAllAsync();
+        IQueryable<T> GetAll();
         Task<T> GetByIdAsync(Guid id);
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);

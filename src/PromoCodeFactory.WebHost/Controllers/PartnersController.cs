@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using PromoCodeFactory.WebHost.Models;
@@ -21,9 +22,12 @@ namespace PromoCodeFactory.WebHost.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<PartnerResponse>>> GetPartnersAsync()
+        public async Task<ActionResult<PartnerResponse>> GetPartnersAsync()
         {
-            var partners = await _partnersRepository.GetAllAsync();
+            var partners = await _partnersRepository
+        .GetAll()
+        .Include(p => p.PartnerLimits) // Загружаем связанные данные PartnerLimits
+        .ToListAsync();
 
             var response = partners.Select(x => new PartnerResponse()
             {
