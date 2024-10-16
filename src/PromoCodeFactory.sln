@@ -12,7 +12,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromoCodeFactory.Core", "Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromoCodeFactory.DataAccess", "PromoCodeFactory.DataAccess\PromoCodeFactory.DataAccess.csproj", "{945D06BC-A71F-4C00-982E-FACF5A0BFEC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoCodeFactory.UnitTests", "PromoCodeFactory.UnitTests\PromoCodeFactory.UnitTests.csproj", "{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromoCodeFactory.UnitTests", "PromoCodeFactory.UnitTests\PromoCodeFactory.UnitTests.csproj", "{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoCodeFactory.GraphQL", "PromoCodeFactory.GraphQL\PromoCodeFactory.GraphQL.csproj", "{86212BE0-578E-4C33-A994-75639436EB53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 		{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2590FFCE-FAAA-47B7-AEAD-D018E74D873C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86212BE0-578E-4C33-A994-75639436EB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86212BE0-578E-4C33-A994-75639436EB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86212BE0-578E-4C33-A994-75639436EB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86212BE0-578E-4C33-A994-75639436EB53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

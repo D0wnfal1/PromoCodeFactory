@@ -1,0 +1,6 @@
+@PromoCodeFactory.GraphQL_HostAddress = http://localhost:5126
+
+GET {{PromoCodeFactory.GraphQL_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
